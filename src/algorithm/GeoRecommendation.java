@@ -32,7 +32,7 @@ public class GeoRecommendation implements Recommendation {
       recommendedItems.addAll(items);
     }
 
-    // Student question: why we use list now instead of set?
+    // question: why we use list now instead of set?
     // Answer: because we will have ranking now.
     List<Item> filteredItems = new ArrayList<>();  // step 4
     for (Item item : recommendedItems) {
@@ -51,7 +51,7 @@ public class GeoRecommendation implements Recommendation {
         double distance1 = getDistance(item1.getLatitude(), item1.getLongitude(), lat, lon);
         double distance2 = getDistance(item2.getLatitude(), item2.getLongitude(), lat, lon);
         // return the increasing order of distance.
-        return (int) (distance1 - distance2);
+        return Double.compare(distance1, distance2);
       }
     });
 

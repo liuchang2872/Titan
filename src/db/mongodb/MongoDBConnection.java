@@ -57,8 +57,7 @@ public class MongoDBConnection implements DBConnection {
 	@Override
 	public void unsetFavoriteItems(String userId, List<String> itemIds) {
 		db.getCollection("users").updateOne(new Document("user_id", userId),
-				new Document("$pull", new Document("favorite", new Document("$each", itemIds))));
-
+				new Document("$pullAll", new Document("favorite", itemIds)));
 	}
 
 	@Override
@@ -141,6 +140,26 @@ public class MongoDBConnection implements DBConnection {
 								.append("snippet_url", item.getSnippetUrl()).append("image_url", item.getImageUrl())
 								.append("url", item.getUrl()).append("categories", item.getCategories())),
 				options);
+	}
+	
+	
+	// TO DO !!!!!!!!!!!!!!!!
+	@Override
+	 public String getFullname(String userId) {
+		return "";
+	}
+	  
+	  /**
+	   * Return whether the credential is correct. (This is not needed for main course, just for
+	   * demo and extension)
+	   * @param userId
+	   * @param password
+	   * @return boolean
+	   */
+	// TO DO !!!!!!!!!!!!!!!!
+	@Override
+	  public boolean verifyLogin(String userId, String password) {
+		return true;
 	}
 
 }

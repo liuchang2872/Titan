@@ -21,7 +21,7 @@ public class TicketMasterAPI implements ExternalAPI{
 	private static final String API_HOST = "app.ticketmaster.com";
 	private static final String SEARCH_PATH = "/discovery/v2/events.json";
 	private static final String DEFAULT_TERM = "";  // no restriction
-	private static final String API_KEY = "Jnt6QHEgL77JF2GP093dwJapLSSbAhV9";
+	private static final String API_KEY = "RUTrRMtOeAQLbMFEy0QQncJrO9ycmafJ";
 
 	/**
 	 * Creates and sends a request to the TicketMaster API by term and location.
@@ -38,11 +38,10 @@ public class TicketMasterAPI implements ExternalAPI{
 		try {
 			HttpURLConnection connection = (HttpURLConnection) new URL(url + "?" + query).openConnection();
 			connection.setRequestMethod("GET");
- 
+			// getResponseCode impicitly call connect?
 			int responseCode = connection.getResponseCode();
 			System.out.println("\nSending 'GET' request to URL : " + url + "?" + query);
 			System.out.println("Response Code : " + responseCode);
- 
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String inputLine;
 			StringBuffer response = new StringBuffer();
@@ -71,6 +70,7 @@ public class TicketMasterAPI implements ExternalAPI{
 		return term;
 	}
  
+	// used in the main funtion
 	private void queryAPI(double lat, double lon) {
 		List<Item> itemList = search(lat, lon, null);
 		try {
